@@ -2,10 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import jwt from 'jsonwebtoken';
 import fs from 'fs';
+import cors from 'cors';
 
 const app = express();
 const PORT = 5000;
 
+app.use(cors());
 app.use(bodyParser.json());
 
 const users = JSON.parse(fs.readFileSync('users.json'));
