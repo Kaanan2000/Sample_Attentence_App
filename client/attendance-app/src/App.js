@@ -5,11 +5,12 @@ import Home from './Home';
 
 function App() {
     const isLoggedIn = !!localStorage.getItem('token');
+    console.log(isLoggedIn);
 
     return (
         <Router>
             <Routes>
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={isLoggedIn ? <Navigate to="/home" /> : <Login />} />
                 <Route path="/home" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
                 <Route path="/" element={<Navigate to={isLoggedIn ? "/home" : "/login"} />} />
             </Routes>
